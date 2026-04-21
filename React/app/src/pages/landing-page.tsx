@@ -1,0 +1,7 @@
+export function landingpage() {
+    return (
+        
+
+    );
+}
+
