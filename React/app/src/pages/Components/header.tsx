@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import Order from "./Buttons/Order";
 
 export default function Header() {
   return (
@@ -13,7 +14,8 @@ export default function Header() {
     >
       <h1>Bites</h1>
 
-      <nav style={{ display: "flex", gap: "16px" }}>
+          <nav style={{ display: "flex", gap: "16px", color: "yellow" }}>
+              <Order children={undefined} to={""}/>
         {/* <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/contact">Contact</Link> */}
