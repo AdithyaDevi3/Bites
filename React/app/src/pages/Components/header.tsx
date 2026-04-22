@@ -14,9 +14,9 @@ export default function Header() {
       <h1>Bites</h1>
 
       <nav style={{ display: "flex", gap: "16px" }}>
-        <Link to="/">Home</Link>
+        {/* <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
+        <Link to="/contact">Contact</Link> */}
       </nav>
     </header>
   );
