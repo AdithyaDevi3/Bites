@@ -9,7 +9,7 @@ type CardProps = {
 
 export default function BigCard({ title, image, to }: CardProps) {
   return (
-    <Link to={to} className="card">
+    <Link to={to} className="carsd">
       <img src={image} alt={title} />
           <div className="card-title">{title}</div>
           {/* idk what to update.   */}
