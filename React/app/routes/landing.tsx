@@ -58,9 +58,8 @@ export default function Landing() {
 
         {/* CTA Button */}
         <button
-                  onClick={() =>
-                      console.log("CTA Clicked") }
-                    //   navigate("/menu")}
+                  onClick={() =>                      
+                      navigate("/menu")}
           className="btn-primary text-lg px-8 py-3 transform hover:scale-105 transition"
         >
           Start Ordering Now
