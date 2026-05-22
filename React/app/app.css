@@ -5,16 +5,45 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   @apply bg-white dark:bg-gray-950;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
-  @tailwind base;
-  
-  @tailwind components;
-  
-  @tailwind utilities;
   }
+}
+
+/* Card Styles */
+.grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6;
+}
+
+.carsd {
+  @apply relative block rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
+}
+
+.carsd img {
+  @apply w-full h-48 object-cover;
+}
+
+.card-title {
+  @apply absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-4 text-lg font-bold;
+}
+
+/* Button Styles */
+button {
+  @apply px-4 py-2 rounded-lg font-semibold transition-all duration-200;
+}
+
+.btn-primary {
+  @apply bg-yellow-500 text-black hover:bg-yellow-600;
+}
+
+.btn-secondary {
+  @apply bg-gray-700 text-white hover:bg-gray-800;
 }

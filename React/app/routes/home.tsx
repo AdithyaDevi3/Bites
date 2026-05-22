@@ -1,15 +1,21 @@
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 import type { Route } from "./+types/home";
-// import { Welcome } from "../welcome/welcome";
-import { landingpage as Landing} from "~/src/pages/landing-page";
 
-export function meta({}: Route.MetaArgs) {
+export const meta: Route.MetaFunction = () => {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Bites - Home" },
+    { name: "description", content: "Order delicious food from Bites!" },
   ];
-}
+};
 
 export default function Home() {
-  // return <Welcome />;
-  return < Landing />;
+  const navigate = useNavigate();
+
+  // Redirect to menu on load
+  useEffect(() => {
+    navigate("/menu");
+  }, [navigate]);
+
+  return null;
 }

@@ -1,25 +1,39 @@
-import { Link } from "react-router";
-import Order from "./Buttons/Order";
+import { Link, useNavigate } from "react-router";
 
 export default function Header() {
-  return (
-    <header
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "16px",
-        background: "#111",
-        color: "white",
-      }}
-    >
-      <h1>Bites</h1>
+  const navigate = useNavigate();
 
-          <nav style={{ display: "flex", gap: "16px", color: "yellow" }}>
-              <Order children={undefined} to={""}/>
-        {/* <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link> */}
-      </nav>
+  return (
+    <header className="bg-black text-white sticky top-0 z-50 shadow-lg">
+      <div className="container mx-auto max-w-6xl px-4 py-4 flex justify-between items-center">
+        <Link
+          to="/"
+          className="text-3xl font-bold text-yellow-500 hover:text-yellow-400"
+        >
+          🍕 Bites
+        </Link>
+
+        <nav className="flex items-center gap-6">
+          <Link
+            to="/menu"
+            className="text-white hover:text-yellow-500 transition font-semibold"
+          >
+            Menu
+          </Link>
+          <Link
+            to="/orders"
+            className="text-white hover:text-yellow-500 transition font-semibold"
+          >
+            Orders
+          </Link>
+          <button
+            onClick={() => navigate("/cart")}
+            className="bg-yellow-500 text-black px-4 py-2 rounded-lg font-bold hover:bg-yellow-600 transition"
+          >
+            🛒 Cart
+          </button>
+        </nav>
+      </div>
     </header>
   );
 }
