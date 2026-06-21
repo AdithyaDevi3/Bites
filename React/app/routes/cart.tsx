@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router";
 import type { Route } from "./+types/cart";
 import Header from "~/src/pages/Components/header";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useCart } from "~/context/CartContext";
 
 export const meta: Route.MetaFunction = () => {
   return [
@@ -12,46 +13,22 @@ export const meta: Route.MetaFunction = () => {
 
 export default function Cart() {
   const navigate = useNavigate();
-  const [cartItems, setCartItems] = useState<any[]>([
-    {
-      id: 1,
-      name: "Margherita Pizza",
-      price: 12.99,
-      quantity: 2,
-      image: "🍕",
-    },
-    {
-      id: 2,
-      name: "Classic Cheeseburger",
-      price: 10.99,
-      quantity: 1,
-      image: "🍔",
-    },
-  ]);
+  const {
+    items: cartItems,
+    updateQuantity,
+    removeFromCart,
+    clearCart,
+  } = useCart();
 
   const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum: number, item: any) => sum + item.price * item.quantity,
     0,
   );
   const tax = subtotal * 0.1;
   const deliveryFee = 4.99;
   const total = subtotal + tax + deliveryFee;
 
-  const updateQuantity = (id: number, quantity: number) => {
-    if (quantity <= 0) {
-      setCartItems(cartItems.filter((item) => item.id !== id));
-    } else {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === id ? { ...item, quantity } : item,
-        ),
-      );
-    }
-  };
-
-  const removeItem = (id: number) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
-  };
+  const removeItem = (id: number) => removeFromCart(id);
 
   if (cartItems.length === 0) {
     return (

@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+
+# Build outputs
+dist/
+build/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Coverage
+coverage/
+
+# Misc
+.cache/
+
+# Local-only files
+*.local
+
+# Local-only configuration (do NOT commit real config files)
+# Example: keep your build and tool configs local if you don't want to share them
+/React/vite.config.ts
+/React/postcss.config.cjs
+/React/tailwind.config.cjs
+/React/tsconfig.json
+/React/react-router.config.ts
+
+

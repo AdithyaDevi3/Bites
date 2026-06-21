@@ -2,12 +2,15 @@ import { useNavigate, useSearchParams } from "react-router";
 import type { Route } from "./+types/pizza";
 import Header from "~/src/pages/Components/header";
 import FlipCard from "~/src/pages/Components/FlipCard/flip-card";
-import { useState } from "react";
+import { useCart } from "~/context/CartContext";
 
 export const meta: Route.MetaFunction = () => {
   return [
     { title: "Bites - Pizza Menu" },
-    { name: "description", content: "Choose from our delicious pizza selection" },
+    {
+      name: "description",
+      content: "Choose from our delicious pizza selection",
+    },
   ];
 };
 
@@ -82,16 +85,9 @@ const pizzas = [
 
 export default function Pizza() {
   const navigate = useNavigate();
-  const [cart, setCart] = useState<{ [key: number]: number }>({});
+  const { items, addToCart, getTotalItems } = useCart();
 
-  const addToCart = (pizzaId: number) => {
-    setCart((prev) => ({
-      ...prev,
-      [pizzaId]: (prev[pizzaId] || 0) + 1,
-    }));
-  };
-
-  const cartCount = Object.values(cart).reduce((a, b) => a + b, 0);
+  const cartCount = getTotalItems();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -117,22 +113,34 @@ export default function Pizza() {
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pizzas.map((pizza) => (
-              <FlipCard
-                key={pizza.id}
-                id={pizza.id}
-                name={pizza.name}
-                description={pizza.description}
-                price={pizza.price}
-                image={pizza.image}
-                category={pizza.category}
-                rating={pizza.rating}
-                prepTime={pizza.prepTime}
-                calories={pizza.calories}
-                onAddToCart={addToCart}
-                cartQuantity={cart[pizza.id] || 0}
-              />
-            ))}
+            {pizzas.map((pizza) => {
+              const cartItem = items.find((it) => it.id === pizza.id);
+              const cartQuantity = cartItem ? cartItem.quantity : 0;
+              return (
+                <FlipCard
+                  key={pizza.id}
+                  id={pizza.id}
+                  name={pizza.name}
+                  description={pizza.description}
+                  price={pizza.price}
+                  image={pizza.image}
+                  category={pizza.category}
+                  rating={pizza.rating}
+                  prepTime={pizza.prepTime}
+                  calories={pizza.calories}
+                  onAddToCart={() =>
+                    addToCart({
+                      id: pizza.id,
+                      name: pizza.name,
+                      price: pizza.price,
+                      image: pizza.image,
+                      category: pizza.category,
+                    })
+                  }
+                  cartQuantity={cartQuantity}
+                />
+              );
+            })}
           </div>
         </div>
       </section>

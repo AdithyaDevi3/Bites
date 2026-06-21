@@ -1,0 +1,8 @@
+// Copy this file to tailwind.config.cjs and edit content globs as needed
+module.exports = {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './app/**/*.{css,tsx,ts,jsx,js}'],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};

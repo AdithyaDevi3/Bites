@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import type { Route } from "./+types/checkout";
 import Header from "~/src/pages/Components/header";
 import { useState } from "react";
+import { useCart } from "~/context/CartContext";
 
 export const meta: Route.MetaFunction = () => {
   return [
@@ -12,6 +13,7 @@ export const meta: Route.MetaFunction = () => {
 
 export default function Checkout() {
   const navigate = useNavigate();
+  const { items } = useCart();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -243,23 +245,43 @@ export default function Checkout() {
                 <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
 
                 <div className="space-y-2 mb-6 border-b pb-6">
-                  <div className="flex justify-between">
-                    <span>Subtotal:</span>
-                    <span className="font-semibold">$23.98</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Tax:</span>
-                    <span className="font-semibold">$2.40</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Delivery:</span>
-                    <span className="font-semibold">$4.99</span>
-                  </div>
-                </div>
-
-                <div className="flex justify-between text-2xl font-bold">
-                  <span>Total:</span>
-                  <span className="text-green-600">$31.37</span>
+                  {(() => {
+                    const subtotal = items.reduce(
+                      (sum: number, it: any) => sum + it.price * it.quantity,
+                      0,
+                    );
+                    const tax = subtotal * 0.1;
+                    const delivery = 4.99;
+                    const total = subtotal + tax + delivery;
+                    return (
+                      <>
+                        <div className="flex justify-between">
+                          <span>Subtotal:</span>
+                          <span className="font-semibold">
+                            ${subtotal.toFixed(2)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Tax:</span>
+                          <span className="font-semibold">
+                            ${tax.toFixed(2)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Delivery:</span>
+                          <span className="font-semibold">
+                            ${delivery.toFixed(2)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between text-2xl font-bold mt-4">
+                          <span>Total:</span>
+                          <span className="text-green-600">
+                            ${total.toFixed(2)}
+                          </span>
+                        </div>
+                      </>
+                    );
+                  })()}
                 </div>
 
                 <div className="mt-6 p-4 bg-gray-100 rounded-lg">

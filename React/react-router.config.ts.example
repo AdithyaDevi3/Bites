@@ -1,0 +1,4 @@
+// Copy this file to react-router.config.ts if you need local router dev settings
+export default {
+  // Example placeholder. Replace with your react-router config as needed.
+}

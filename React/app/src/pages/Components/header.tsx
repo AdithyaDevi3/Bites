@@ -1,7 +1,10 @@
 import { Link, useNavigate } from "react-router";
+import { useCart } from "~/context/CartContext";
 
 export default function Header() {
   const navigate = useNavigate();
+  const { getTotalItems } = useCart();
+  const totalItems = getTotalItems();
 
   return (
     <header className="bg-black text-white sticky top-0 z-50 shadow-lg">
@@ -30,7 +33,7 @@ export default function Header() {
             onClick={() => navigate("/cart")}
             className="bg-yellow-500 text-black px-4 py-2 rounded-lg font-bold hover:bg-yellow-600 transition"
           >
-            🛒 Cart
+            🛒 Cart {totalItems > 0 && `(${totalItems})`}
           </button>
         </nav>
       </div>
