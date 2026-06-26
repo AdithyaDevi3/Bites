@@ -1,16 +1,9 @@
 import React, { createContext, useContext } from "react";
 import type { ReactNode } from "react";
 import { useCartWithStorage } from "../hooks/useCart";
+import type { CartItem as HookCartItem } from "../hooks/useCart";
 
-export interface CartItem {
-  id: number;
-  name: string;
-  description?: string;
-  price: number;
-  quantity: number;
-  image: string;
-  category?: string;
-}
+export type CartItem = HookCartItem;
 
 interface CartContextType {
   items: CartItem[];
@@ -38,8 +31,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const addToCart = (item: Omit<CartItem, "quantity">) => {
     // ensure description exists for compatibility with the persistent hook
-    const payload = { description: "", ...item } as Omit<CartItem, "quantity">;
-    hookAddToCart(payload as any);
+    const { description, ...rest } = item as any;
+    const payload: Omit<HookCartItem, "quantity"> = {
+      ...rest,
+      description: description || "",
+    };
+    hookAddToCart(payload);
   };
 
   return (

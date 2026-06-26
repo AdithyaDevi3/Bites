@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useFavorites } from "~/context/FavoritesContext";
 import "./flip-card.css";
 
 interface FlipCardProps {
@@ -29,6 +30,9 @@ export default function FlipCard({
   cartQuantity = 0,
 }: FlipCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const { toggleFavorite, isFavorite } = useFavorites();
+
+  const favorited = isFavorite(id);
 
   const handleCardClick = (e: React.MouseEvent) => {
     // Don't flip if clicking on a button or interactive element
@@ -49,7 +53,27 @@ export default function FlipCard({
         {/* Front of card - Image */}
         <div className="flip-card-front">
           <div className="card-image-container">
-            <div className="card-image">{image}</div>
+            <div className="card-image">
+              {typeof image === "string" ? (
+                <img
+                  src={image}
+                  alt={name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                image
+              )}
+            </div>
+            <button
+              aria-label={favorited ? "Remove favorite" : "Add favorite"}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorite(id);
+              }}
+              className="favorite-btn absolute top-2 right-2 text-2xl"
+            >
+              {favorited ? "❤️" : "🤍"}
+            </button>
             {category && <span className="category-badge">{category}</span>}
             {cartQuantity > 0 && (
               <span className="cart-badge">{cartQuantity}</span>

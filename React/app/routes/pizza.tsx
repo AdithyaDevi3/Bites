@@ -132,6 +132,7 @@ export default function Pizza() {
                     addToCart({
                       id: pizza.id,
                       name: pizza.name,
+                      description: pizza.description || "",
                       price: pizza.price,
                       image: pizza.image,
                       category: pizza.category,

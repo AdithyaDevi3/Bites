@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-interface CartItem {
+export interface CartItem {
   id: number;
   name: string;
   description: string;
@@ -10,7 +10,7 @@ interface CartItem {
   quantity: number;
 }
 
-interface UseCartReturn {
+export interface UseCartReturn {
   items: CartItem[];
   addToCart: (item: Omit<CartItem, "quantity">) => void;
   removeFromCart: (id: number) => void;
