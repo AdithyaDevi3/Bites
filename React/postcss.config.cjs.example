@@ -1,7 +1,0 @@
-// Copy to postcss.config.cjs and add your local settings
-module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-};
