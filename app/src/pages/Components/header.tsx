@@ -1,3 +1,4 @@
+"use client";
 import { Link, useNavigate } from "react-router";
 import { useCart } from "~/context/CartContext";
 import { useFavorites } from "~/context/FavoritesContext";

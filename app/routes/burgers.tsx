@@ -1,3 +1,4 @@
+"use client";
 import { useNavigate } from "react-router";
 import type { Route } from "./+types/burgers";
 import Header from "~/src/pages/Components/header";

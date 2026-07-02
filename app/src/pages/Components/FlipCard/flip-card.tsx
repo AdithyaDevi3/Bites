@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { useFavorites } from "~/context/FavoritesContext";
 import "./flip-card.css";
