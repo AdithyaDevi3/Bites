@@ -1,5 +1,5 @@
 {
-  "name": "bites-react",
+  "name": "bites",
   "private": true,
   "type": "module",
   "scripts": {
@@ -17,8 +17,7 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router": "7.14.0",
-    "react-router-dom": "^7.14.2",
-  "vite": "^8.0.14"
+    "react-router-dom": "^7.14.2"
   },
   "devDependencies": {
     "@react-router/dev": "^7.14.0",
@@ -31,11 +30,11 @@
     "postcss": "^8.5.10",
     "tailwindcss": "^4.2.4",
     "typescript": "^5.9.3",
-    "vite": "^8.0.3",
-    "vite-tsconfig-paths": "^6.1.1"
-    ,
+    "vite": "^8.0.14",
+    "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^1.1.5",
     "@testing-library/react": "^14.0.0",
+    "@testing-library/react-hooks": "^8.0.1",
     "jsdom": "^22.1.0"
   }
 }

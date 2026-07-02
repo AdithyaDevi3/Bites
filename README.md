@@ -2,16 +2,17 @@
 
 Local repo for the Bites web app (React + Vite + React Router).
 
-Quick start (macOS, zsh):
+This project is configured to run from the repository root. The application source lives in `app/`, and all dependencies, scripts, and config files are managed from the root directory.
+
+## Quick start (macOS, zsh)
 
 1. Install dependencies
 
 ```bash
-cd React
 npm install
 ```
 
-2. Start dev server
+2. Start the development server
 
 ```bash
 npm run dev
@@ -21,11 +22,22 @@ npm run dev
 
 ```bash
 npm run build
-# preview production build
+```
+
+4. Preview the production build
+
+```bash
 npm run preview
 ```
 
-Notes:
+## Project layout
 
-- Keep any local-only files (e.g. `.env`, editor settings, build outputs) uncommitted — they are covered by `.gitignore`.
-- If you use a different package manager (yarn/pnpm), adjust commands accordingly.
+- `app/` — application source files
+- `public/` — static assets
+- `package.json` — root package and scripts
+- `vite.config.ts`, `tsconfig.json`, `tailwind.config.cjs`, `postcss.config.cjs` — root configuration files
+
+## Notes
+
+- Keep local-only files uncommitted; `.gitignore` is defined at the repository root.
+- If you use a different package manager, run the equivalent commands from the repo root.
